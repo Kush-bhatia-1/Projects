@@ -1,0 +1,51 @@
+---
+title: "MCG Data"
+date: '2023-07-22'
+output: html_document
+---
+
+# Install the necessary packages if not already installed
+# install.packages("readxl")
+# install.packages("ggplot2")
+
+```{r MCG}
+# Load required packages
+library(ggplot2)
+
+# Read the data into a data frame
+data <- read_excel("Desktop/DATA1.xlsx")
+
+# Bar plot: Ethnicity & Race breakdown
+ggplot(data, aes(x = "", fill = `Ethnicity & Race`)) +
+  geom_bar(width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Ethnicity & Race Breakdown") +
+  theme_void()
+
+# Bar plot: Gender breakdown
+ggplot(data, aes(x = "", fill = Gender)) +
+  geom_bar(width = 1) +
+  coord_polar(theta = "y") +
+  labs(title = "Gender Breakdown") +
+  theme_void()
+
+# Box plot: Average High School GPA by Gender
+ggplot(data, aes(x = Gender, y = `Avg High School GPA`, fill = Gender)) +
+  geom_boxplot() +
+  labs(title = "Average High School GPA by Gender")
+
+# Box plot: Average High School GPA by Ethnicity & Race
+ggplot(data, aes(x = `Ethnicity & Race`, y = `Avg High School GPA`, fill = `Ethnicity & Race`)) +
+  geom_boxplot() +
+  labs(title = "Average High School GPA by Ethnicity & Race")
+
+# Scatter plot: Average High School GPA vs. Average Number of Advanced Courses
+ggplot(data, aes(x = `Avg High School GPA`, y = `Average Number of Advanced Courses`, color = Gender)) +
+  geom_point() +
+  labs(title = "Average High School GPA vs. Average Number of Advanced Courses")
+
+# You can customize these plots further by adding appropriate labels, legends, themes, etc. as per your requirements.
+
+
+```
+
